@@ -1,0 +1,111 @@
+<template>
+  <div id="updateuser">   
+    <v-container grid-list-md text-xs-center>
+      <div class="inner-addon text-xs-left right-addon" style="margin-left:5px;">
+        <span style="color:rgba(0,0,0,0.54);font-weight:400;font-size:15px;"> Home /</span> &nbsp;<span style="font-weight:400;font-size:15px;"> Update User</span>
+      </div>
+      <v-form v-model="valid" ref="add_user_form">
+        <v-card>
+          <v-layout row wrap flex align-center justify-center>
+            <v-flex xs7 class="text-xs-center">
+                <v-layout row wrap>
+                  <v-flex xs6 pr-3>
+                     <v-text-field v-model="first_name" label="First Name" :rules="nameRules" required style="max-height:45px;"></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 pl-3>
+                     <v-text-field v-model="last_lame" label="Last Name" :rules="nameRules" required style="max-height:45px;"></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 pr-3>
+                    <v-text-field v-model="email" label="Email" :rules="emailRules" required style="max-height:45px;"></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 pl-3>
+                    <v-text-field
+                      v-model="password"
+                      :append-icon="show1 ? 'visibility_off' : 'visibility'"
+                      :rules="pwdRules"
+                      :type="show1 ? 'text' : 'password'"
+                      name="input-10-1"
+                      label="Password"
+                      hint="At least 8 characters"
+                      @click:append="show1 = !show1"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 pr-3>
+                    <v-text-field
+                      v-model="confirm_password"
+                      :append-icon="show2 ? 'visibility_off' : 'visibility'"
+                      :rules="confirmPwdRules"
+                      :type="show2 ? 'text' : 'password'"
+                      name="input-10-1"
+                      label="Confirm Password"
+                      hint="At least 8 characters"
+                      @click:append="show2 = !show2"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 pl-3>
+                     <v-checkbox :label="`Enabled`" v-model="checkbox"></v-checkbox>
+                  </v-flex>
+                </v-layout>
+            </v-flex>
+          </v-layout>
+        </v-card>
+        <v-layout row wrap mt-2>
+          <v-flex xs12 class="text-xs-right">
+            <v-btn color="primary" @click="submit" >Save</v-btn>
+            <v-btn color="primary" @click="clear" style="margin-right: 0px;">Cancel</v-btn>
+          </v-flex>
+        </v-layout>
+      </v-form>
+    </v-container>
+  </div>
+</template>
+
+<style scoped>
+.v-text-field.v-text-field--solo .v-input__control{
+  min-height: 20px;
+}
+#adduser .v-input--checkbox, label {
+  margin-top:2%;
+}
+</style>
+
+<script>
+export default {
+  data () {
+      return {
+        show1: false,
+        show2: false,
+        valid: true,
+        first_name: "",
+        last_lame: "",
+        email: "",
+        password: "",
+        confirm_password: "",
+        nameRules:[
+          v => !!v || 'Name is required'
+        ],
+        checkbox: true,
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+/.test(v) || 'E-mail must be valid'
+        ],
+        pwdRules: [
+          v => !!v || 'Password is required',
+          v => v.length >= 8 || 'Min 8 characters',
+        ],
+        confirmPwdRules: [
+          v => !!v || 'Confirm Password is required',
+          (v) => v == this.password || 'Password and Confirm Password must match'
+        ],
+      }
+    },
+    methods: {
+      submit () {
+        this.$refs.add_user_form.validate()
+      },
+      clear () {
+        this.$refs.add_user_form.reset()
+      }
+    }
+  }
+</script>

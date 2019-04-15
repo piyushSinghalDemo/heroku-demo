@@ -1,0 +1,19 @@
+src/components/*.vue
+src/components/sqlDesigner/*.vue
+src/components/schedular/*.vue
+src/components/authorization/*.vue
+src/components/datasources/*.vue
+src/components/environment/*.vue
+src/components/jobManagement/*.vue
+src/components/userprovisioning/*.vue
+<<<<<<< HEAD
+src/components/processWorkflow/*.vue
+src/components/workflow/*.vue
+src/components/sqlDesigner/grid/*.vue
+src/components/jobManagement/grid/*.vue
+src/components/schedular/grid/*.vue
+src/views/dataTable/*.vue
+src/views/*.vue
+=======
+src/components/processWorkflow/*.vue
+>>>>>>> 143e7fc0d6e2b98d2e8ce40376ff4db57ac6e09c
